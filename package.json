@@ -1,0 +1,31 @@
+{
+  "name": "transcript-generator",
+  "version": "0.0.1",
+  "description": "Generates google speech api response from any video using google cloud functions and google cloud storage and serves it as an SRT file",
+  "keywords": [
+    "google speech api",
+    "speech",
+    "cloud-functions",
+    "cloud functions",
+    "google cloud storage",
+    "cloud storage",
+    "cloud-storage",
+    "gcs",
+    "video",
+    "video to speech",
+    "srt"
+  ],
+  "main": "app.js",
+  "author": "Luis Mayo <luismayovalbuena@outlook.es>",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LuisMayo/media-srt-generator"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "@google-cloud/speech": "^1.1.0",
+    "@google-cloud/storage": "^1.6.0",
+    "fluent-ffmpeg": "^2.1.2"
+  }
+}
