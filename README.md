@@ -2,7 +2,7 @@
 
 This project when run will generate a srt file from the provided videos/audios. 
 Accepts request on this format:
-{
+```{
   fileName: name,
   url: urlMedia,
   language_code: language,
@@ -11,7 +11,7 @@ Accepts request on this format:
           "phrases": string[]
       }
   ]
-}
+}```
 
 A client example can be seen at https://github.com/LuisMayo/media-srt-generator/
 
