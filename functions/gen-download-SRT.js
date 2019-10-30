@@ -10,6 +10,8 @@ const generateSRT = require('./generateSRT');
  * @param {!express:Response} res HTTP response context.
  */
 module.exports = (req, res) => {
+    console.log(req.body) 
+    req.body = JSON.parse(req.body)
     const url = req.body.url;
     let fileName = req.body.fileName;
     const speechContexts = req.body.speechContexts;
