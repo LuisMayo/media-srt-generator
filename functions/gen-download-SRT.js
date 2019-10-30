@@ -1,7 +1,7 @@
 const ffmpeg = require('../utils/ffmpeg-utils');
 const storageUtils = require('../utils/storage-utils');
-const transcribeAudio = require('./functions/transcribeAudio');
-const generateSRT = require('./functions/generateSRT');
+const transcribeAudio = require('./transcribeAudio');
+const generateSRT = require('./generateSRT');
 
 /**
  * Responds to any HTTP request.
