@@ -15,7 +15,7 @@ Accepts request on this format:
 }
 ```
 
-A client example can be seen at https://github.com/LuisMayo/media-srt-generator/
+A client example can be seen at https://github.com/LuisMayo/media-srt-generator-front/
 
   ## Source
 Big part of the code was from [a previous project by Abhi347](https://github.com/Abhi347/vid-to-speech-api-json/tree/1a66bb592acc9347ebc38471bfaff6eaf1d27aed) and it has been Licensed under MIT License, see originalLicense for more info.
