@@ -1,8 +1,6 @@
 const fs = require('fs');
-const path = require('path');
-const storageUtils = require('../utils/storage-utils');
 const srtUtils = require('../utils/srt-utils');
-module.exports = (speechData) => {
+function fun (speechData) {
     console.log(`event ${JSON.stringify(event)}`);
     let speechFileNameWithoutExtension;
     const readFile = fs.readFileSync(speechData, 'utf8');
@@ -11,4 +9,8 @@ module.exports = (speechData) => {
     const transcriptionFilePath = `/tmp/${speechFileNameWithoutExtension}.json`;
     console.log('result: ', srtData);
     return srtData;
+};
+
+module.exports = {
+    fun: fun,
 };

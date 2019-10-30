@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const storageUtils = require('../utils/storage-utils');
 const speechUtils = require('../utils/speech-utils');
-module.exports = (event, languageCode, speechContexts) => {
+function fun (event, languageCode, speechContexts)  {
     let audioFileNameWithoutExtension;
     return Promise.resolve()
         .then(() => {
@@ -42,4 +42,8 @@ module.exports = (event, languageCode, speechContexts) => {
         }).catch((err) => {
             return Promise.reject(err);
         });
+};
+
+module.exports = {
+    fun: fun,
 };
