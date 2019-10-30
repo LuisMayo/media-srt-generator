@@ -1,7 +1,6 @@
 const fs = require('fs');
 const srtUtils = require('../utils/srt-utils');
 function fun (speechData) {
-    console.log(`event ${JSON.stringify(event)}`);
     let speechFileNameWithoutExtension;
     const readFile = fs.readFileSync(speechData, 'utf8');
     console.log('ReadFile: ' + JSON.stringify(readFile))

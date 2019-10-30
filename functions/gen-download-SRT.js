@@ -26,9 +26,9 @@ module.exports = (req, res) => {
     ffmpeg.extractAudio(fileName, '/tmp/' + fileName).then(flacPath => {
         storageUtils.uploadToBucket(flacPath).then(
             () => {
-                transcribeAudio.fun(flacPath).then(
+                transcribeAudio.fun(fileName + '.flac', language, speechContexts).then(
                     speechPath => {
-                        const srtData = generateSRT.fun(speechPath, language, speechContexts);
+                        const srtData = generateSRT.fun(speechPath);
                         res.status(200).send(srtData);
                     },
                     err => {

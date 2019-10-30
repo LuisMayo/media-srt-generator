@@ -6,7 +6,7 @@ function fun (event, languageCode, speechContexts)  {
     let audioFileNameWithoutExtension;
     return Promise.resolve()
         .then(() => {
-            const audioFile = storageUtils.flacBucket.file(event);
+            const audioFile = storageUtils.getFile(event)
             const audioFilePath = storageUtils.getFilePathFromFile(audioFile);
             console.log(`audioFilePath: ${JSON.stringify(audioFilePath)}`);
             audioFileNameWithoutExtension = path.parse(audioFilePath).name;

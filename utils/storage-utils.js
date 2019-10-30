@@ -2,10 +2,19 @@ const path = require('path');
 const storageClient = require('@google-cloud/storage')();
 const appConfig = require('../app-config');
 
-const flacBucket = storageClient.bucket(appConfig.buckets.audio);
+let flacBucket = storageClient.bucket(appConfig.buckets.audio);
 
+
+function getFilePathFromFile(storageFile) {
+    return `gs://${storageFile.bucket.name}/${storageFile.name}`;
+}
+
+function getFile(event) {
+    return flacBucket.file(event);
+}
 
 function uploadToBucket(filepath) {
+    console.log ('FLACBucket: '+ JSON.stringify(flacBucket));
     return flacBucket
         .upload(filepath, {resumable: false})
         .then(() => {
@@ -19,6 +28,9 @@ function uploadToBucket(filepath) {
 }
 
 
+
 module.exports = {
     uploadToBucket: uploadToBucket,
+    getFilePathFromFile: getFilePathFromFile,
+    getFile: getFile
 };
