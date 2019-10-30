@@ -7,11 +7,11 @@ const storageUtils = require('../utils/storage-utils');
  * @param {!express:Request} req HTTP request context.
  * @param {!express:Response} res HTTP response context.
  */
-exports.genAndDownloadSRT = (req, res) => {
+module.exports = (req, res) => {
     const url = req.body.url;
-    const fileName = req.body.fileName;
+    let fileName = req.body.fileName;
     const speechContexts = req.body.speechContexts;
-    const language = req.body.language;
+    const language = req.body.language || 'en-US';
     const child_process = require('child_process');
 
     var wget = 'wget' + ' -O /tmp/' + fileName + ' ' + url;
@@ -21,15 +21,28 @@ exports.genAndDownloadSRT = (req, res) => {
 
 
     // Uploads a local file to the bucket
-    const flacPath = await ffmpeg.extractAudio(fileName, '/tmp/' + fileName)
-    if(!flacPath) {
-        res.status(500).send('Error extracting Audio');
-    }
-    await storageUtils.uploadToBucket(flacPath);
-    const speechPath = await transcribeAudio(flacPath);
-    if(!speechPath) {
-        res.status(500).send('Error transcibing Audio');
-    }
-    const srtData = generateSRT(speechPath, language, speechContexts);
-    res.status(200).send(srtData);
+    ffmpeg.extractAudio(fileName, '/tmp/' + fileName).then(flacPath => {
+        storageUtils.uploadToBucket(flacPath).then(
+            () => {
+                transcribeAudio(flacPath).then(
+                    speechPath => {
+                        const srtData = generateSRT(speechPath, language, speechContexts);
+                        res.status(200).send(srtData);
+                    },
+                    err => {
+                        res.status(500).send('Error transcibing Audio: ' + err);
+                    }
+                )
+            },
+            err => {
+                res.status(500).send('Error uploading flac: ' + err);
+            }
+        )
+    },
+        err => {
+            res.status(500).send('Error extracting Audio: ' + err);
+        }
+    ).catch(err => {
+        res.status(500).send('Error extracting Audio: ' + err);
+    })
 }

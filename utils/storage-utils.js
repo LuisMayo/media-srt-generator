@@ -7,7 +7,7 @@ const flacBucket = storageClient.bucket(appConfig.buckets.audio);
 
 function uploadToBucket(filepath) {
     return flacBucket
-        .upload(filepath)
+        .upload(filepath, {resumable: false})
         .then(() => {
             console.log(`${filepath} uploaded to bucket.`);
             return Promise.resolve('resolve');
