@@ -17,6 +17,7 @@ module.exports = (req, res) => {
     const url = req.body.url;
     let fileName = req.body.fileName;
     const speechContexts = req.body.speechContexts;
+    const onlyDownload = req.body.onlyDownload;
     const language = req.body.language || 'en-US';
     const child_process = require('child_process');
 
@@ -30,15 +31,19 @@ module.exports = (req, res) => {
     ffmpeg.extractAudio(fileName, '/tmp/' + fileName).then(flacPath => {
         storageUtils.uploadToBucket(flacPath).then(
             () => {
-                transcribeAudio.fun(fileName + '.flac', language, speechContexts).then(
-                    speechPath => {
-                        const srtData = generateSRT.fun(speechPath);
-                        res.status(200).send(srtData);
-                    },
-                    err => {
-                        res.status(500).send('Error transcibing Audio: ' + err);
-                    }
-                )
+                if(onlyDownload) {
+                    res.status(200).send(fileName + '.flac');
+                } else {
+                    transcribeAudio.fun(fileName + '.flac', language, speechContexts).then(
+                        speechPath => {
+                            const srtData = generateSRT.fun(speechPath);
+                            res.status(200).send(srtData);
+                        },
+                        err => {
+                            res.status(500).send('Error transcibing Audio: ' + err);
+                        }
+                    )
+                }
             },
             err => {
                 res.status(500).send('Error uploading flac: ' + err);
