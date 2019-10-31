@@ -4,9 +4,10 @@ This project when run will generate a srt file from the provided videos/audios.
 Accepts request on this format:
 ```typescript
 {
-  fileName: name,
-  url: urlMedia,
-  language_code: language,
+  fileName: string,
+  url: string,
+  language_code: string,
+  onlyDownload: boolean, // When set, specifies the function not to attemp transcribing the audio and just download it to the bucket
   speechContexts: [
       {
           "phrases": string[]
