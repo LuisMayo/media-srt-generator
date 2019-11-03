@@ -1,5 +1,7 @@
 # Media SRT Generator
 
+How to use: https://gist.github.com/LuisMayo/8e7b95dee866841b218e046ddebb4028
+
 This project when run will generate a srt file from the provided videos/audios using a single Google Cloud function. 
 Accepts request on this format:
 ```typescript
