@@ -17,9 +17,9 @@ function uploadToBucket(filepath) {
     console.log ('FLACBucket: '+ JSON.stringify(flacBucket));
     return flacBucket
         .upload(filepath, {resumable: false})
-        .then(() => {
+        .then((response) => {
             console.log(`${filepath} uploaded to bucket.`);
-            return Promise.resolve('resolve');
+            return Promise.resolve(response[0]);
         })
         .catch(err => {
             console.error('ERROR:', err);

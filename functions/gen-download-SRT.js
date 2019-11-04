@@ -30,14 +30,21 @@ module.exports = (req, res) => {
     // Uploads a local file to the bucket
     ffmpeg.extractAudio(fileName, '/tmp/' + fileName).then(flacPath => {
         storageUtils.uploadToBucket(flacPath).then(
-            () => {
+            (file) => {
                 if(onlyDownload) {
                     res.status(200).send(fileName + '.flac');
                 } else {
                     transcribeAudio.fun(fileName + '.flac', language, speechContexts).then(
                         speechPath => {
                             const srtData = generateSRT.fun(speechPath);
-                            res.status(200).send(srtData);
+                            file.delete().then(
+                                data =>  {
+                                    res.status(200).send(srtData);
+                                },
+                                err => {
+                                    res.status(200).send(srtData);
+                                }
+                            )
                         },
                         err => {
                             res.status(500).send('Error transcibing Audio: ' + err);
