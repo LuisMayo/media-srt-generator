@@ -1,5 +1,4 @@
 # Media SRT Generator
-[![npm version](https://badge.fury.io/js/gstt-to-srt-converter.svg)](https://badge.fury.io/js/gstt-to-srt-converter)
 
 How to use: https://gist.github.com/LuisMayo/8e7b95dee866841b218e046ddebb4028
 
