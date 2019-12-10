@@ -1,8 +1,7 @@
 const path = require('path');
 const storageClient = require('@google-cloud/storage')();
-const appConfig = require('../app-config');
 
-let flacBucket = storageClient.bucket(appConfig.buckets.audio);
+let flacBucket = storageClient.bucket(process.env.BUCKET);
 
 
 function getFilePathFromFile(storageFile) {

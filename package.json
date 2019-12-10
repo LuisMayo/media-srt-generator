@@ -2,6 +2,9 @@
   "name": "transcript-generator",
   "version": "0.0.1",
   "description": "Generates google speech api response from any video using google cloud functions and google cloud storage and serves it as an SRT file",
+  "scripts": {
+    "start": "functions-framework --target=genAndDownloadSRT"
+  },
   "keywords": [
     "google speech api",
     "speech",
@@ -26,6 +29,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "@google-cloud/speech": "^1.1.0",
     "@google-cloud/storage": "^1.6.0",
+    "@google-cloud/functions-framework": "^1.3.2",
     "fluent-ffmpeg": "^2.1.2",
     "gstt-to-srt-converter": "^1.0.1"
   }
