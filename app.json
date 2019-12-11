@@ -1,5 +1,4 @@
 {
-  "name": "foo-app",
   "env": {
       "BUCKET": {
           "description": "Name of the bucket used to temporary store files"
