@@ -10,8 +10,14 @@ const generateSRT = require('./generateSRT');
  * @param {!express:Response} res HTTP response context.
  */
 module.exports = (req, res) => {
-    res.set('Access-Control-Allow-Origin', "*")
-    res.set('Access-Control-Allow-Methods', 'GET, POST')
+    res.set('Access-Control-Allow-Origin', "*");
+    res.set('Access-Control-Allow-Methods', 'GET, POST, PUT');
+
+    if (req.method === 'GET') { // If get Go to frontend
+        res.location(process.env.FRONT + '#back=' + req.protocol + '://' + req.hostname);
+        res.status(307).end();
+    }
+
     console.log(req.body) 
     req.body = JSON.parse(req.body)
     const url = req.body.url;
