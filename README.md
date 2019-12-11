@@ -21,7 +21,7 @@ Accepts request on this format:
 ```
 
 A client example can be seen at https://github.com/LuisMayo/media-srt-generator-front/
-onlyDownload is designed so userr may trigger FLAC generation without generating speech, this may be useful for long audios that can't be processed in under 15 minutes, then time limit for a GC function.
+onlyDownload is designed so user may trigger FLAC generation without generating speech, this may be useful for long audios that can't be processed in under 15 minutes, then time limit for a GC function.
 After generating the FLAC the flac shall be processed using other tools or directly on Google cloud Shell
 
   ## Source
