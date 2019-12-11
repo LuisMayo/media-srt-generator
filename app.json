@@ -2,6 +2,11 @@
   "env": {
       "BUCKET": {
           "description": "Name of the bucket used to temporary store files"
+      },
+      "FRONT": {
+        "description": "URL of the frontend application",
+        "value": "https://luismayo.github.io/media-srt-generator-front/",
+        "required": false
       }
   }
 }
