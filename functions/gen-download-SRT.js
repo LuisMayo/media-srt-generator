@@ -1,3 +1,4 @@
+const fs = require('fs');
 const ffmpeg = require('../utils/ffmpeg-utils');
 const storageUtils = require('../utils/storage-utils');
 const transcribeAudio = require('./transcribeAudio');
@@ -21,17 +22,21 @@ module.exports = (req, res) => {
     console.log(req.body) 
     req.body = JSON.parse(req.body)
     const url = req.body.url;
+    const encodedFile = req.body.encodedFile;
     let fileName = req.body.fileName;
     const speechContexts = req.body.speechContexts;
     const onlyDownload = req.body.onlyDownload;
     const language = req.body.language || 'en-US';
     const child_process = require('child_process');
 
-    var wget = 'wget' + ' -O /tmp/' + fileName + ' ' + url;
-    // excute wget using child_process' exec function
-
-    child_process.execSync(wget);
-
+    if (url) {
+        var wget = 'wget' + ' -O /tmp/' + fileName + ' ' + url;
+        // excute wget using child_process' exec function
+        child_process.execSync(wget);
+    } else if (encodedFile) {
+        const encodedFilePayload = encodedFile.split(';base64,').pop();
+        fs.writeFileSync('/tmp/' + fileName, encodedFilePayload, {encoding: 'base64'});
+    }
 
     // Uploads a local file to the bucket
     ffmpeg.extractAudio(fileName, '/tmp/' + fileName).then(flacPath => {
