@@ -36,6 +36,8 @@ module.exports = (req, res) => {
     } else if (encodedFile) {
         const encodedFilePayload = encodedFile.split(';base64,').pop();
         fs.writeFileSync('/tmp/' + fileName, encodedFilePayload, {encoding: 'base64'});
+    } else {
+        res.status(422).send('You need to specify at least one media source');
     }
 
     // Uploads a local file to the bucket
