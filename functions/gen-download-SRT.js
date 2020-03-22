@@ -45,7 +45,9 @@ module.exports = (req, res) => {
         storageUtils.uploadToBucket(flacPath).then(
             (file) => {
                 if(onlyDownload) {
-                    res.status(200).send(fileName + '.flac');
+                    const audioFile = storageUtils.getFile(fileName + '.flac')
+                    const audioFilePath = storageUtils.getFilePathFromFile(audioFile);
+                    res.status(200).send(audioFilePath);
                 } else {
                     transcribeAudio.fun(fileName + '.flac', language, speechContexts).then(
                         speechPath => {
