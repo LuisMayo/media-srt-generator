@@ -1,6 +1,6 @@
 # Media SRT Generator
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?revision=return-storage-path)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
 How to use: https://gist.github.com/LuisMayo/8e7b95dee866841b218e046ddebb4028
 
