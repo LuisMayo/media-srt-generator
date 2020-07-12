@@ -27,10 +27,6 @@ After generating the FLAC the flac shall be processed using other tools or direc
   ## Source
 Big part of the code was from [a previous project by Abhi347](https://github.com/Abhi347/vid-to-speech-api-json/tree/1a66bb592acc9347ebc38471bfaff6eaf1d27aed) and it has been Licensed under MIT License, see originalLicense for more info.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment/use for notes on how to deploy/use the project.
-
 
 ## Contributing
 Since this is a tiny project we don't have strict rules about contributions. Just open a Pull Request to fix any of the project issues or any improvement you have percieved on your own. Any contributions which improve or fix the project will be accepted as long as they don't deviate too much from the project objectives. If you have doubts about whether the PR would be accepted or not you can open an issue before coding to ask for my opinion.
